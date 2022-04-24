@@ -1,0 +1,25 @@
+
+html {
+  color:#f40d30;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-y:scroll;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+.darkMode {
+    background-color: #282828 !important;
+    background-image: none;
+    background-opacity-color: rgba(35,35,35,.9) !important;
+    text-color: #f40d30;
+
+    border-color: #363636;
+}
+
+* {
+    color: #000000; /*fallback for IE*/
+    color: var(--text-color);
+    text-align: left;
+    font-family: -apple-system-font,BlinkMacSystemFont,Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+}

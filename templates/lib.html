@@ -1,0 +1,221 @@
+<style>
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+img {
+  max-width:250;
+  max-height:375;
+  width: auto;
+  height: auto;
+  padding:5px;
+
+  
+}
+.c {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+/* Bottom left text */
+.bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  color: white;
+}
+
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  color: white;
+}
+
+/* Top right text */
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  color: white;
+}
+
+/* Bottom right text */
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+  color: white;
+}
+
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.rimg {
+  border-radius: 50%;
+}
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+
+
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+
+
+div.desc {
+  padding: 15px;
+  text-align: left;
+}
+@media (min-width: 576px)
+.bd-example {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border-width: 1px;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.bd-example {
+    position: relative;
+    padding: 1rem;
+    margin: 1rem -.75rem 0;
+    border: solid #dee2e6;
+    border-width: 1px 0 0;
+}
+</style>
+<div>
+<h3 class="ired">Mangadex<span class="iconify ired" data-icon="akar-icons:settings-vertical" style="float:right;" onclick="settings()"></span></h3>
+</div>
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Settings:</h3>
+    <p>Dark mode<span id="dm" class="iconify ired" data-icon="akar-icons:toggle-off-fill" onclick="tg()" style="float:right;font-size:35px;"></span></p> 
+  </div>
+
+</div>
+
+  <!-- row 2-->
+<div>
+<div class="row row-cols-2 row-cols-md-3 g-2 d-flex justify-content-center">
+{% for n in mn %}
+<div class="col">
+<div class="card h-100" style="width: 250px;height:375px;">
+  <div class="card-img-overlay">
+    <h3 class="card-title" style="color:white;" >{{n.name}}</h3>
+  </div>
+  <img width="250" height="375" src="{{n.url}}" class="card-img-top image-fluid" alt="...">
+
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+
+
+
+
+
+
+
+<script>
+
+// Get the modal
+var modal = document.getElementById("myModal");
+var dm
+var dms
+
+// Get the button that opens the modal
+
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+function tg(){
+  console.log("clicked toggle dm!")
+  toggleDarkMode()
+  dms = getCookie("enableDarkMode")
+  dm = document.getElementById("dm")
+  if (dms == "true"){
+    dm.setAttribute("data-icon","akar-icons:toggle-on-fill")
+  } else {
+    dm.setAttribute("data-icon","akar-icons:toggle-off-fill")
+  }
+}
+// When the user clicks the button, open the modal 
+function settings(){
+  console.log("opened settings!")
+  dms = getCookie("enableDarkMode")
+  dm = document.getElementById("dm")
+  if (dms == "true"){
+    dm.setAttribute("data-icon","akar-icons:toggle-on-fill")
+  } else {
+    dm.setAttribute("data-icon","akar-icons:toggle-off-fill")
+  }
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
